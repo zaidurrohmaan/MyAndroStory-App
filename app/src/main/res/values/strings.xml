@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">MyAndroStory</string>
+    <string name="ketik_nama_anda">Ketik nama Anda</string>
+    <string name="ketik_email_anda">Ketik email Anda</string>
+    <string name="tidak_sesuai_format_email">Tidak sesuai format email</string>
+    <string name="ketik_password_anda">Ketik password Anda</string>
+    <string name="minimal_8_karakter">Minimal 8 karakter</string>
+    <string name="masuk">Masuk</string>
+    <string name="masukkan_data_diri_anda">Masukkan data diri Anda</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="masuk_menggunakan_akun_anda">Masuk menggunakan akun Anda</string>
+    <string name="belum_punya_akun">Belum punya akun?</string>
+    <string name="daftar">Daftar</string>
+    <string name="deskripsi_sign_up">Masukkan data diri Anda</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="sudah_punya_akun">Sudah punya akun?</string>
+    <string name="andro_story">Andro Story</string>
+    <string name="by_zaidurrohman">by Zaidurrohman</string>
+    <string name="registrasi_berhasil">Registrasi berhasil</string>
+    <string name="email_is_already_taken">Email is already taken</string>
+    <string name="pastikan_email_dan_password_anda_benar">Pastikan email dan password Anda benar</string>
+    <string name="add_story">Add story</string>
+    <string name="log_out">Log Out</string>
+    <string name="maps">Maps</string>
+</resources>
