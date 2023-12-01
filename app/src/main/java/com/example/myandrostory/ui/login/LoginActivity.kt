@@ -78,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         viewModel.token.observe(this) {
-            if (it.length > 3) {
+            if (it != "") {
                 startActivity(Intent(this@LoginActivity, StoryActivity::class.java))
                 finish()
             }
