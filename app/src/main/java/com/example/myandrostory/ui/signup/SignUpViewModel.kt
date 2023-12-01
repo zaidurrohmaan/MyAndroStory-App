@@ -8,7 +8,7 @@ import com.example.myandrostory.data.Result
 import com.example.myandrostory.data.response.RegisterResponse
 import kotlinx.coroutines.launch
 
-class SignUpViewModel(private val repository: Repository): ViewModel() {
+class SignUpViewModel(private val repository: Repository) : ViewModel() {
 
     val registerResult: MutableLiveData<Result<RegisterResponse>> = MutableLiveData()
 
@@ -17,12 +17,10 @@ class SignUpViewModel(private val repository: Repository): ViewModel() {
         viewModelScope.launch {
             try {
                 val response = repository.registerUser(name, email, password)
-                if (response != null) {
-                    if(response.isSuccessful){
-                        registerResult.postValue(Result.Success(response.body()))
-                    } else {
-                        registerResult.postValue(Result.Error(response.body()?.message))
-                    }
+                if (response.isSuccessful) {
+                    registerResult.postValue(Result.Success(response.body()))
+                } else {
+                    registerResult.postValue(Result.Error(response.body()?.message))
                 }
             } catch (ex: Exception) {
                 registerResult.value = Result.Error(ex.message)

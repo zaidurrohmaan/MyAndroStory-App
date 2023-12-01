@@ -12,10 +12,16 @@ class EditTextEmail : AppCompatEditText {
     constructor(context: Context) : super(context) {
         init()
     }
+
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         init()
     }
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         init()
     }
 
@@ -23,8 +29,9 @@ class EditTextEmail : AppCompatEditText {
         super.onDraw(canvas)
         hint = context.getString(R.string.ketik_email_anda)
     }
+
     private fun init() {
-        addTextChangedListener(object: TextWatcher {
+        addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -36,7 +43,7 @@ class EditTextEmail : AppCompatEditText {
                 }
             }
 
-            override fun afterTextChanged(p0: Editable?){
+            override fun afterTextChanged(p0: Editable?) {
             }
         })
     }

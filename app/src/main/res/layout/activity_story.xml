@@ -23,17 +23,6 @@
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_story" />
 
-    <TextView
-        android:id="@+id/tv_token"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="24sp"
-        android:text="Mohon bantuannya Kak. Datanya tidak mau tampil di recyclerView :( Saya bingung salahnya di mana" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -44,5 +33,16 @@
         android:layout_marginBottom="32dp"
         android:contentDescription="@string/add_story"
         android:src="@drawable/ic_add"/>
+
+    <TextView
+        android:id="@+id/token"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="24sp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,4 +23,15 @@
     <string name="add_story">Add story</string>
     <string name="log_out">Log Out</string>
     <string name="maps">Maps</string>
+    <string name="retry">Coba lagi</string>
+    <string name="galeri">Galeri</string>
+    <string name="kamera">Kamera</string>
+    <string name="tambahkan_deskripsi">tambahkan deskripsi (maks. 255 karakter)</string>
+    <string name="unggah">Unggah</string>
+    <string name="gambar_cerita">Gambar cerita</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="email_tidak_sesuai_format">Email tidak sesuai format</string>
+    <string name="password_minimal_8_karakter">Password minimal 8 karakter</string>
+    <string name="nama_tidak_boleh_kosong">Nama tidak boleh kosong</string>
+    <string name="selamat_datang_di">Selamat Datang di</string>
 </resources>

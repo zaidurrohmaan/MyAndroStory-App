@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_prefs")
 
-class UserPreferences private constructor(private val dataStore: DataStore<Preferences>){
+class UserPreferences private constructor(private val dataStore: DataStore<Preferences>) {
 
     private val USER_TOKEN_KEY = stringPreferencesKey("user_token")
     private val USER_SESSION_KEY = booleanPreferencesKey("user_session")

@@ -39,6 +39,7 @@ android {
     }
     defaultConfig {
         buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\"")
+        //buildConfigField("String", "MAPS_API_KEY", "\"AIzaSyCTymQTYXiyjoHMbTWxPV4ei_e8fnM9mw4\"")
     }
 }
 

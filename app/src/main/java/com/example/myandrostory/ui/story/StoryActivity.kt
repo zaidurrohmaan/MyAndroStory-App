@@ -1,18 +1,20 @@
 package com.example.myandrostory.ui.story
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.asLiveData
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myandrostory.R
+import com.example.myandrostory.data.response.StoryItem
 import com.example.myandrostory.databinding.ActivityStoryBinding
 import com.example.myandrostory.ui.ViewModelFactory
-import com.example.myandrostory.utils.UserPreferences
-import com.example.myandrostory.utils.dataStore
-import kotlinx.coroutines.flow.first
+import com.example.myandrostory.ui.add_story.AddStoryActivity
+import com.example.myandrostory.ui.detail.DetailStoryActivity
+import com.example.myandrostory.ui.login.LoginActivity
+import com.example.myandrostory.ui.map.MapsActivity
 
 class StoryActivity : AppCompatActivity() {
 
@@ -22,22 +24,39 @@ class StoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.rvStory.layoutManager = LinearLayoutManager(this)
 
         val factory: ViewModelFactory = ViewModelFactory.getInstance(this@StoryActivity)
         val viewModel: StoryViewModel by viewModels {
             factory
         }
         val adapter = StoryAdapter()
-        binding.rvStory.adapter = adapter
-        viewModel.story.observe(this) {
-            Log.d("Observe Paging Data", "Observe Paging Data")
-            adapter.submitData(lifecycle, it)
+
+        binding.rvStory.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter{ adapter.retry() }
+        )
+
+        viewModel.token.observe(this) {
+            binding.token.text = it
+            viewModel.story.observe(this) {
+                adapter.submitData(lifecycle, it)
+            }
         }
 
-//        val pref = UserPreferences.getInstance(application.dataStore)
-//        pref.getUserToken().asLiveData().observe(this){
-//            binding.tvToken.text = it
-//        }
+        adapter.setOnItemClickCallback(object: StoryAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: StoryItem) {
+                Intent(this@StoryActivity, DetailStoryActivity::class.java).also {
+                    it.putExtra(DetailStoryActivity.EXTRA_NAME, data.name)
+                    it.putExtra(DetailStoryActivity.EXTRA_PHOTO_URL, data.photoUrl)
+                    it.putExtra(DetailStoryActivity.EXTRA_DESC, data.description)
+                    startActivity(it)
+                }
+            }
+        })
+
+        binding.fab.setOnClickListener {
+            startActivity(Intent(this@StoryActivity, AddStoryActivity::class.java))
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -48,11 +67,17 @@ class StoryActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.btn_logout -> {
-
+                val factory: ViewModelFactory = ViewModelFactory.getInstance(this@StoryActivity)
+                val viewModel: StoryViewModel by viewModels {
+                    factory
+                }
+                viewModel.saveUserToken("")
+                viewModel.saveUserSession(false)
+                startActivity(Intent(this@StoryActivity, LoginActivity::class.java))
+                finish()
             }
-
             R.id.btn_maps -> {
-
+                startActivity(Intent(this@StoryActivity, MapsActivity::class.java))
             }
         }
         return super.onOptionsItemSelected(item)

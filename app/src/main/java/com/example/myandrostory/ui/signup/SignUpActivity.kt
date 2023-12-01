@@ -35,46 +35,53 @@ class SignUpActivity : AppCompatActivity() {
             val email = binding.edRegisterEmail.text.toString().trim()
             val password = binding.edRegisterPassword.text.toString().trim()
 
-            if(name.isEmpty()){
-                binding.edRegisterName.error = "Nama tidak boleh kosong"
+            if (name.isEmpty()) {
+                binding.edRegisterName.error = getString(R.string.nama_tidak_boleh_kosong)
                 valid = false
             }
-            if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                binding.edRegisterEmail.error = "Email tidak sesuai format"
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.edRegisterEmail.error = getString(R.string.email_tidak_sesuai_format)
                 valid = false
             }
-            if(password.length < 8) {
-                binding.edRegisterPassword.error = "Password minimal 8 karakter"
+            if (password.length < 8) {
+                binding.edRegisterPassword.error = getString(R.string.password_minimal_8_karakter)
                 valid = false
             }
 
-            if(valid){
+            if (valid) {
                 viewModel.registerUser(name, email, password)
             }
         }
 
-        viewModel.registerResult.observe(this) {result ->
+        viewModel.registerResult.observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
                     showLoading(true)
                 }
+
                 is Result.Success -> {
                     showLoading(false)
-                    Toast.makeText(this@SignUpActivity,
-                        getString(R.string.registrasi_berhasil), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@SignUpActivity,
+                        getString(R.string.registrasi_berhasil), Toast.LENGTH_SHORT
+                    ).show()
                 }
+
                 is Result.Error -> {
                     showLoading(false)
-                    Toast.makeText(this@SignUpActivity,
-                        getString(R.string.email_is_already_taken), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@SignUpActivity,
+                        getString(R.string.email_is_already_taken), Toast.LENGTH_SHORT
+                    ).show()
                 }
+
                 else -> showLoading(false)
             }
         }
     }
 
     private fun showLoading(isLoading: Boolean) {
-        if(isLoading) {
+        if (isLoading) {
             binding.progressBar.visibility = View.VISIBLE
             binding.btnDaftar.isClickable = false
         } else {

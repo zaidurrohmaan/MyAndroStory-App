@@ -17,7 +17,11 @@ class EditTextPassword : AppCompatEditText {
         init()
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         init()
     }
 
@@ -25,8 +29,9 @@ class EditTextPassword : AppCompatEditText {
         super.onDraw(canvas)
         hint = context.getString(R.string.ketik_password_anda)
     }
+
     private fun init() {
-        addTextChangedListener(object: TextWatcher {
+        addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -37,7 +42,8 @@ class EditTextPassword : AppCompatEditText {
                     error = null
                 }
             }
-            override fun afterTextChanged(p0: Editable?){
+
+            override fun afterTextChanged(p0: Editable?) {
             }
         })
     }
